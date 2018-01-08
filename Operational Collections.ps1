@@ -6,10 +6,10 @@
 # Website : www.SystemCenterDudes.com
 # Twitter : @scdudes
 #
-# Version   : 1.2
+# Version   : 1.3
 # Created   : 10/12/2017
 # Modified  :
-# 10/12/2017  - Restructed to add collections one by one and add if not present
+# 10/12/2017  - Restructured to add collections one by one and add if not present
 #             - Fixed spacing issues after * and from in Collection 7 and 70
 #             - Changed Collection4  to 1706 instead of 1702
 #             - Changed Collection52 to include all 1602 client updates. 8355.1000 to 8355.1%
@@ -20,7 +20,8 @@
 # 10/16/2017  - Reconfigured limiting collections in each Collection.
 # 10/18/2017  - Fixed several collections that had LimittingCollection instead of LimitCollection.
 #             - Fixed Move-CMObject and changed the Output color to green when new collection is created..
-# 
+# 01/08/2018  - Updated Collection 4 from 1706 to 1710, Add collection 73
+#
 # 
 # Original Edits before my modification
 # Version : 2.8
@@ -105,9 +106,9 @@ $Collection3 = @{
     LimitCollection = $Collection1.Name
 }
 $Collection4 = @{
-    Name = "Clients version | Not Latest (1706)";
-    Query = "select SMS_R_SYSTEM.ResourceID,SMS_R_SYSTEM.ResourceType,SMS_R_SYSTEM.Name,SMS_R_SYSTEM.SMSUniqueIdentifier,SMS_R_SYSTEM.ResourceDomainORWorkgroup,SMS_R_SYSTEM.Client from SMS_R_System where SMS_R_System.ClientVersion != '5.00.8540.1007'";
-    Comment = "All devices without SCCM client version 1706 (5.00.8540.1007)";
+	Name = "Clients version | Not Latest (1710)";
+    Query = "select SMS_R_SYSTEM.ResourceID,SMS_R_SYSTEM.ResourceType,SMS_R_SYSTEM.Name,SMS_R_SYSTEM.SMSUniqueIdentifier,SMS_R_SYSTEM.ResourceDomainORWorkgroup,SMS_R_SYSTEM.Client from SMS_R_System where SMS_R_System.ClientVersion != '5.00.8577.1003'";
+    Comment = "All devices without SCCM client version 1710 (5.00.8577.1003)";
     LimitCollection = $Collection1.Name
 }
 $Collection5 = @{
@@ -518,6 +519,12 @@ $Collection72 = @{
     Comment = "All systems with SCCM client version 1706 installed";
     LimitCollection = $LimitingCollection
 }
+$Collection73 = @{
+    Name = "Clients Version | 1710";
+    Query = "select SMS_R_SYSTEM.ResourceID,SMS_R_SYSTEM.ResourceType,SMS_R_SYSTEM.Name,SMS_R_SYSTEM.SMSUniqueIdentifier,SMS_R_SYSTEM.ResourceDomainORWorkgroup,SMS_R_SYSTEM.Client from SMS_R_System where SMS_R_System.ClientVersion like '5.00.8577.1%'";
+    Comment = "All systems with SCCM client version 1710 installed";
+    LimitCollection = $LimitingCollection
+}
 
 $Collections = $Collection1,$Collection2,$Collection3,$Collection4,$Collection5,$Collection6,$Collection7,$Collection8,$Collection9,$Collection10,`
     $Collection11,$Collection12,$Collection13,$Collection14,$Collection15,$Collection16,$Collection17,$Collection18,$Collection19,$Collection20,`
@@ -526,7 +533,7 @@ $Collections = $Collection1,$Collection2,$Collection3,$Collection4,$Collection5,
     $Collection41,$Collection42,$Collection43,$Collection44,$Collection45,$Collection46,$Collection47,$Collection48,$Collection49,$Collection50,`
     $Collection51,$Collection52,$Collection53,$Collection54,$Collection55,$Collection56,$Collection57,$Collection58,$Collection59,$Collection60,`
     $Collection61,$Collection62,$Collection63,$Collection64,$Collection65,$Collection66,$Collection67,$Collection68,$Collection69,$Collection70,`
-    $Collection71,$Collection72
+    $Collection71,$Collection72,$Collection73
 
 # Creating collections and putting them in Operational folder
 $FolderPath = $SiteCode.Name + ":\DeviceCollection\" + $CollectionFolder.Name
