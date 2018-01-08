@@ -12,6 +12,7 @@ the collection.
 .First time you run this, It will create the folder and create all the collections for you.
 
 .Second time you run this, if all the collections exist, nothing happens. If one is missing or was deleted, it will only create the one.
+
 .Make sure you delete Collection4 or else you will have multiple Not Latest Collections.
 
 .Feel free to remove the pause at the end if you see fit. This is just to confirm what already exist or has been created.
